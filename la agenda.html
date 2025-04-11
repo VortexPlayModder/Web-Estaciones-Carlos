@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página Web</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        html, body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: 'Merienda', cursive, sans-serif;
+        }
+        
+        /* HEADER UNIFICADO CON NAV */
+        .header-nav-container {
+            background-image: url('30674abb9b01260deb85958072c3d64d.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding: 10px 20px;
+        }
+        
+        .header-nav-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.5);
+            z-index: 0;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+        
+        header img {
+            height: 200px;
+            margin-right: 20px;
+        }
+        
+        .nav-social-container {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+        }
+        
+        nav {
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+        
+        .social-icons {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            padding: 0 15px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        
+        .social-icons h2 {
+            margin-right: 10px;
+            font-size: 20px;
+            white-space: nowrap;
+            font-weight: bold;
+            display: inline;
+            font-weight: 700;
+        }
+
+        .info-link {
+            margin-left: 20px; /* Espacio adicional antes del texto */
+        }
+
+
+        .social-icons a.info-link {
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        .social-icons a.info-link:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+            text-decoration: underline;
+            transform: translateY(-2px);
+            color: #000;
+        }
+        
+        .social-icons img {
+            height: 24px;
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-icons img:hover {
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+            100% { transform: scale(1); }
+        }
+        
+        /* SECCIONES */
+        .sections-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        
+        .section {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow-y: auto;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            min-height: 50vh;
+        }
+
+        .section-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+
+        .section-bg::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+        }
+
+        .section-content-container {
+            position: relative;
+            z-index: 1;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            max-width: 60%;
+        }
+        
+        .section:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 2;
+        }
+        
+        .section h1 {
+            font-family: 'Merienda', cursive;
+            font-size: 45px;
+            margin-bottom: 2vw;
+            transition: all 0.3s ease;
+            margin-top: 0;
+            text-align: center;
+        }
+        
+        .section:hover h1 {
+            transform: scale(1.1);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .section-content {
+            font-family: 'Merienda', cursive, sans-serif;
+            max-width: 80%;
+            transition: all 0.3s ease;
+        }
+        
+        .section:hover .section-content {
+            transform: translateY(-5px);
+        }
+        
+        .section img {
+            max-width: 80%;
+            max-height: 200px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.5s ease;
+        }
+        
+        .section:hover img {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        
+        .section ul {
+            text-align: left;
+            padding-left: 20px;
+        }
+        
+        .section li {
+            margin-bottom: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .section:hover li {
+            transform: translateX(5px);
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        
+        footer img {
+            height: 50px;
+        }
+        
+        footer .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        footer .footer-links span {
+            margin-right: 10px;
+        }
+        
+        footer .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-weight: 700;
+        }
+        
+        footer .footer-links a:hover {
+            background-color: rgba(255,255,255,0.2);
+            text-decoration: underline;
+            transform: translateY(-2px);
+        }
+
+        .text-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(2px);
+        }
+
+        .section p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .section ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+        
+        .section li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+            font-size: 1.1em;
+        }
+        
+        .section li:before {
+            content: '•';
+            color: currentColor;
+            font-size: 1.5em;
+            position: absolute;
+            left: 5px;
+            top: -3px;
+        }
+
+        .section1 .section-bg {
+            background-image: url('logo.jpeg');
+        }
+
+        .school-title {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-right: 30px;
+        }
+
+        .school-title h1 {
+            font-family: 'Merienda', cursive;
+            font-size: 2.5rem;
+            margin: 0;
+            color: #333;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            line-height: 1;
+        }
+
+        .school-title h2 {
+            font-family: 'Merienda', cursive;
+            font-size: 3rem;
+            margin: 0;
+            color: #4e79d6;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            line-height: 1;
+            font-weight: 700;
+        }
+
+        .action-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #4e79d6;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-button:hover {
+            background-color: #3d53a8;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .action-button:active {
+            transform: translateY(1px);
+        }
+
+        .action-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255,255,255,0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .action-button:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+
+        .button-container {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .home-link {
+            display: flex;
+            align-items: center;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 20px;
+            padding: 10px 15px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 30px;
+            border: 2px solid #4e79d6;
+            transition: all 0.3s ease;
+        }
+
+        .home-link img {
+            height: 30px; /* Aumentado de 20px */
+            margin-right: 10px; /* Aumentado de 5px */
+            transition: transform 0.3s ease;
+        }
+
+        .home-link:hover {
+            text-decoration: none;
+            background-color: #4e79d6;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .home-link:hover img {
+            filter: brightness(0) invert(1);
+            transform: scale(1.1);
+        }
+
+        table {
+            width: 100%; /* Ancho de la tabla */
+            border-collapse: collapse; /* Unifica los bordes */
+            margin: 20px 0; /* Margen superior e inferior */
+        }
+
+        table, th, td {
+            border: 2px solid black; /* Borde negro */
+        }
+        th, td {
+            padding: 15px; /* Espacio dentro de las celdas */
+            text-align: left; /* Alineación del texto */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header-nav-container">
+        <header>
+            <div class="school-title">
+                <h1>ESCUELA INFANTIL</h1>
+                <h2>DEMETER</h2>
+            </div>
+            <img src="logo.jpeg" alt="Logo">
+            
+            <div class="nav-social-container">            
+                <div class="social-icons">
+                    <a href="web_principal.html" class="home-link">
+                        <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="Inicio">
+                        <span>Volver</span>
+                    </a>
+                    <h2><a href="contacto.html" class="info-link">¿Necesitas más información?</a></h2>
+                    <a href="">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/479px-WhatsApp.svg.png" alt="WhatsApp">
+                    </a>
+                    <a href="">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1024px-Instagram_logo_2022.svg.png" alt="Instagram">
+                    </a>
+                </div>
+            </div>
+        </header>
+    </div>
+    
+    <div class="section section1">
+        <div class="section-bg"></div>
+        <div class="section-content-container">
+            <h1>📚¡NUESTRA AGENDA!📚</h1>
+            <p>Aquí os presentamos nuestra agenda escolar que os distribuiremos con el abono de la matricula y que será una herramienta de comunicación entre las familias y la escuela.</p>
+            <div class="text-box">
+                <a href="portada.png" target="_blank" rel="noopener noreferrer"><img src="portada.png" alt="Modelo 1"></a>
+                <a href="info.png" target="_blank" rel="noopener noreferrer"><img src="info.png" alt="Modelo 1"></a>
+                <br>
+                <a href="diario.png" target="_blank" rel="noopener noreferrer"><img src="diario.png" alt="Modelo 1"></a>
+                <a href="resuemn.png" target="_blank" rel="noopener noreferrer"><img src="resuemn.png" alt="Modelo 1"></a>
+                <br>
+                <a href="autorizacion.png" target="_blank" rel="noopener noreferrer"><img src="autorizacion.png" alt="Modelo 1"></a>
+                <a href="contraportada.png" target="_blank" rel="noopener noreferrer"><img src="contraportada.png" alt="Modelo 1"></a>
+                <br>
+                <h3>Puedes ampliar las imagenes y descubrir todos los detalles pulsando o haciendo click sobre cada una.😉</h3>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <img src="logo.jpeg" alt="Logo">
+        <div class="footer-links">
+            <span>© 2025 Escuela Infantil Deméter.</span>
+            <a href="#">Aviso legal</a>
+            <a href="#">Política de Privacidad</a>
+        </div>
+    </footer>
+</body>
+</html>
